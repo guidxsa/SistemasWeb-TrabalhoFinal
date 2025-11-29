@@ -38,7 +38,7 @@ def receber_lance():
 # ------------------------------------------
 # Função: Escolher o vencedor (lógica interna)
 # ------------------------------------------
-def processar_vencedor(produto):
+def escolheLanceVencedor(produto):
     vencedor = None
     maior_valor = -1
     lances_processados = []
@@ -69,8 +69,8 @@ def processar_vencedor(produto):
 # Rota 2: Finalizar Leilão (GET/POST)
 # ---------------------------------------
 @app.route("/finalizar/<produto>", methods=["GET"])
-def finalizar_leilao(produto):
-    vencedor, lances = processar_vencedor(produto)
+def finalizarLeilao(produto):
+    vencedor, lances = escolheLanceVencedor(produto)
 
     if not vencedor:
         return jsonify({
@@ -88,12 +88,12 @@ def finalizar_leilao(produto):
 # Rota auxiliar: Listar tudo
 # ---------------------------
 @app.route("/lances", methods=["GET"])
-def listar_lances():
+def listarLances():
     return jsonify(LancesTable.all())
 
 
 @app.route("/vencedores", methods=["GET"])
-def listar_vencedores():
+def listarVencedores():
     return jsonify(VencedoresTable.all())
 
 
