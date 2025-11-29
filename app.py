@@ -15,7 +15,7 @@ VencedoresTable = db.table("vencedores")
 # Rota 1: Efetuar Lance (POST)
 # ---------------------------
 @app.route("/lance", methods=["POST"])
-def receber_lance():
+def receberLance():
     data = request.json
 
     lance = {
